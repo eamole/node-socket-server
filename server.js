@@ -23,7 +23,7 @@ sockserver.on('connection', (ws) => {
    console.log('New client connected!'); 
    ws.on('close', () => console.log('Client has disconnected!'));
 });
- 
+ // this repeats the callback every 1000ms = 1sec
 setInterval(() => {
    sockserver.clients.forEach((client) => {
        const data = JSON.stringify({'type': 'time', 'time': new Date().toTimeString()});
@@ -39,4 +39,4 @@ setInterval(() => {
        const data = JSON.stringify({'type': 'message', 'message': messages[random], 'position': position});
        client.send(data);
    });
-}, 8000);
+}, 8000);   // every 8 seconds
